@@ -1,0 +1,24 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+.bar {
+  fill: #4679B2;
+  stroke: black;
+  stroke-width: 1;
+}
+
+.bar:hover {
+  fill: rgb(239, 113, 0);
+}
+
+.label {
+
+}
+
+.y-axis {
+	position: relative;
+	left: 5px;
+	margin-left: 10px;
+}
