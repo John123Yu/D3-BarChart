@@ -7,19 +7,28 @@ html, body {
   fill: #4679B2;
   stroke: black;
   stroke-width: 1;
-  opacity: .8;
+  /*opacity: .8;*/
 }
 
 .bar:hover {
   fill: rgb(255, 236, 96);
-}
-
-.label {
-
+  opacity: .8;
 }
 
 .y-axis {
 	position: relative;
 	left: 5px;
 	margin-left: 10px;
+}
+
+.barchart-tooltip {
+	position: absolute;
+	text-align: center;
+	padding: 8px 15px;
+	font-size: 18px;
+	background: rgb(255, 236, 96);
+	color: black;
+	border: 0px;
+	border-radius: 4px;
+	pointer-events: none;
 }
