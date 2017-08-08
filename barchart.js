@@ -1,7 +1,5 @@
 var dataArray = [[7948,"/"], [2862,"/dataset"], [1096,"/dataset/usgs-national-elevation-dataset-ned-1-meter-downloadable-data-collection-from-the-national-map-"], [871,"/education/"], [789,"/health/"], [722,"/consumer/"], [674,"/dataset/uscis-my-case-status"], [648,"/finance/	"], [605,"/climate/"], [586,"/dataset/zip-code-data"], [558,"/dataset?res_format=CSV"], [551,"/applications"], [507,"/food/"], [507,"/developers/apis"], [473,"/dataset/national-stock-number-extract"]];
 
-var Wordpress = ["/", ]
-
 var barChart = function(dataArray, title, yAxis, chart, links=false) {
 	dataArray = dataArray.sort(function(a, b){return b[0] - a[0];});
 
@@ -127,11 +125,12 @@ var barChart = function(dataArray, title, yAxis, chart, links=false) {
 			.attr("x", (width / 2) + 60)
 			.attr("y", 20 - (margin.top / 2))
 			.attr("text-anchor", "middle")
-			.style("font-size", "20px")
+			.style("font-size", "30px")
+			.style('font', 'sans-serif')
 			.text(title);
 
 	}, 600);
 }
 
-barChart(dataArray, 'Most Popular Pages', 'Views', "#chart", true);
+barChart(dataArray, 'Most Popular Pages by Views', 'Views', "#chart", true);
 // barChart(dataArray, 'Popular Pages', 'Views', 'Pages');

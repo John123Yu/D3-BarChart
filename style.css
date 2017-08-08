@@ -1,13 +1,7 @@
-html, body {
-  margin: 0;
-  height: 100%;
-}
-
 .bar {
   fill: #4679B2;
   stroke: black;
   stroke-width: 1;
-  /*opacity: .8;*/
 }
 
 .bar:hover {
