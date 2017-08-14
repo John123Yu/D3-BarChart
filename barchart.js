@@ -1,7 +1,12 @@
 var dataArray = [[7948,"/"], [2862,"/dataset"], [1096,"/dataset/usgs-national-elevation-dataset-ned-1-meter-downloadable-data-collection-from-the-national-map-"], [871,"/education/"], [789,"/health/"], [722,"/consumer/"], [674,"/dataset/uscis-my-case-status"], [648,"/finance/	"], [605,"/climate/"], [586,"/dataset/zip-code-data"], [558,"/dataset?res_format=CSV"], [551,"/applications"], [507,"/food/"], [507,"/developers/apis"], [473,"/dataset/national-stock-number-extract"]];
 
 var barChart = function(dataArray, title, yAxis, chart, links=false) {
+
+	var longestEntry =  dataArray.sort(function (a, b) { return b[1].length - a[1].length; })[0];
+	console.log(longestEntry[1])
 	dataArray = dataArray.sort(function(a, b){return b[0] - a[0];});
+
+	var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 	if(links){
 		dataArray.map(function(element) {
@@ -33,9 +38,9 @@ var barChart = function(dataArray, title, yAxis, chart, links=false) {
 		.attr("class", "barchart-tooltip")
 		.style("opacity", 0);
 
-		var margin = {top: 60, right: 20, bottom: 350, left: 80},
+		var margin = {top: 60, right: 20, bottom: longestEntry[1].length * 5.7, left: 80},
 			width = 700 - margin.left - margin.right,
-			height = 900 - margin.top - margin.bottom;
+			height = 1500 - margin.top - margin.bottom;
 
 		var x = d3.scaleBand().range([0, dataArray.length * (width/dataArray.length) + 10]);
 		var y = d3.scaleLinear().range([height, 0]);
@@ -45,9 +50,11 @@ var barChart = function(dataArray, title, yAxis, chart, links=false) {
 		y.domain([0, maxValue]);
 		x.domain(dataArray.map(function(d) { return d[1]; }));
 
+
 		var svg = d3.select(chart).append("svg")
 					.attr("width", width + margin.left + margin.right)
 					.attr("height", height + margin.top + margin.bottom)
+					.style("background-color", "rgb(242, 242, 242)")
 					.append("g")
 					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -57,6 +64,10 @@ var barChart = function(dataArray, title, yAxis, chart, links=false) {
 		    .attr("class", "bar")
 		    .attr("height", function(d, i) {return (d[0] * (height/maxValue))})
 		    .attr("width","30")
+		    .attr('fill', function(d, i) {
+		    	console.log(d[1])
+			  return color(d[1]);
+			})
 			.attr("x", function(d) {return x(d[1]) + 5;})
 			.attr("y", function(d, i) {return height - (d[0] * (height/maxValue))})
 			.style("opacity", function(d, i) {return ((2)*d[0]/maxValue);})
